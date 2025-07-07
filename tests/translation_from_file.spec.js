@@ -43,12 +43,14 @@ test('Translate file in Word format from English to Danish', async ({page}) => {
 
     // Download is successful by created path
     const downloadPromise = page.waitForEvent('download');
-    await frame.getByText('Download').click();
+    const downloadButton = frame.locator('[data-cy="download-translated-document-button"]');
+    await downloadButton.click();
     const download = await downloadPromise;
 
-    await download.path();
+    const filePathDownload = await download.path();
 
+    console.log('Downloaded file path:', filePathDownload);
 
-
-    
+    //Assert the file path exists
+    expect(filePathDownload).not.toBeNull();
 });
