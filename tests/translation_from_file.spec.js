@@ -46,9 +46,7 @@ test('Translate file in Word format from English to Danish', async ({page}) => {
     const downloadButton = frame.locator('[data-cy="download-translated-document-button"]');
     await downloadButton.click();
     const download = await downloadPromise;
-
     const filePathDownload = await download.path();
-
     console.log('Downloaded file path:', filePathDownload);
 
     //Assert the file path exists
